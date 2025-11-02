@@ -1,76 +1,89 @@
-# 第5回：繰り返し（for / while）とイテレーション
+# Week5 Autograde Starter (Number Guessing Game)
 
-## 🎯 学習目標
-- for文 / while文 の使い方を理解する
-- break / continue の制御方法を学ぶ
-- 合計・個数・最大値などの基本アルゴリズムを実装できる
-- ネスト構造（入れ子ループ）を理解する
-- グループでの例題演習を通して協働的に学ぶ
+## 使い方（学生）
 
----
-
-## 🧭 実習ファイル構成
-
-| ファイル | 内容 |
-|-----------|------|
-| `loop_practice.py` | 授業中のfor/while実習テンプレート |
-| `number_game.py` | 課題#3（数当てゲーム）テンプレート |
-| `examples/kukei_table_example.py` | 九九表の例 |
-| `examples/prime_check_example.py` | 素数判定の例 |
-| `examples/digit_sum_example.py` | 桁和の例 |
+1. このリポジトリを Clone  
+2. `assignment3_number_game.py` を編集（TODO を埋める）  
+3. 保存して Commit → Push  
+4. 数十秒後、GitHub の Actions（Auto-grading）が実行され、テスト結果が反映されます  
 
 ---
 
-## 🧩 グループワークの進め方
-1. チーム内で役割分担（Driver / Explainer / Reviewer / Timekeeper）を決める  
-2. 各例題（九九表・素数判定・桁和）をグループで実装  
-3. 理解が進んでいる学生は、他メンバーをサポート  
-4. 完成したコードを共有し、説明できるようにする  
+### テストファイルについて
+
+- `test/` フォルダ：授業中に使う確認用スクリプトです（学生が編集可）  
+- `autograde_tests/` フォルダ：自動採点（pytest）用です。内容を変更する必要はありません。  
 
 ---
 
-## 🧮 課題#3：数当てゲーム
+## 採点（可視テスト）
 
-仕様：
-- 1〜100の乱数を生成して当てるゲーム
-- 最大7回まで挑戦可
-- 「もっと大きい」「もっと小さい」とヒントを表示
+- 採点対象：`autograde_tests/test_number_game_autograde.py`
+- 判定条件：
+  - 1〜100 の乱数を生成
+  - 最大 7 回まで挑戦可
+  - 「もっと大きい」「もっと小さい」のヒントを表示
+  - 「正解！」および「残念！正解は X でした。」のメッセージ
+  - 整数以外を入力した場合、再入力を促すメッセージ（例：「整数を入力してください」）
 
-## 条件
-- 最大7回まで挑戦可能。
-- 「もっと大きい」「もっと小さい」とヒントを表示。
-- 正解なら「正解！」、失敗なら正答を表示。
-- 整数以外が入力された場合は再入力を促す。
+---
 
-## 実行方法
+## ローカル確認
+
 ```bash
-python number_game.py
-
-採点方法（自動）
-
-GitHub Classroom により pytest で自動採点されます。
+pip install -r requirements.txt
+pytest -q autograde_tests
+```
 
 ---
 
-## 🚀 提出ルール（重要）
+## 注意
 
-⚠️ **提出用リポジトリは必ず Private にしてください。**  
-他の学生から見える状態（Public）にすると不正行為とみなされます。
-
-提出の流れ：
-1. この授業リポジトリを Clone してローカルで作業  
-2. `number_game.py` を完成させる  
-3. 自分の GitHub アカウントに新しい Private リポジトリを作成  
-4. その中に完成したファイルを Push  
-5. 提出フォームまたは教員指定の方法で URL を報告
+- テストをパスするため、出力メッセージに **以下のキーワードを含めてください：**  
+  「正解」「もっと大きい」「もっと小さい」「残念」「整数」など  
+- メッセージ末尾の句読点や全角／半角は厳密に一致しなくても合格します（ゆるいマッチングです）
 
 ---
 
-## 💡 ヒント
-- 九九表や素数判定のコードを参考にしながら進めましょう。
-- うまくいかないときは print で変数の中身を確認。
-- for文、while文、break/continue の動きを理解することが目標です。
+## 課題#3（数当てゲーム）と自動採点について
+
+- **編集するファイル**：`assignment3_number_game.py`  
+- **要件**：
+  - 1〜100 の乱数を生成
+  - 最大 7 回まで挑戦
+  - 「もっと大きい」「もっと小さい」のヒント表示
+  - 「正解！」で終了、失敗時は正答を表示
+  - 整数以外は再入力を促す  
+- **自動採点テスト**：`autograde_tests/test_number_game_autograde.py`（pytest）
 
 ---
 
-© 2025 Yamagata University / Programming Basics
+### 重要: solution ファイルの扱い
+
+- 以前公開していた `number_game.py` は **模範解答（`solutions/number_game_solution.py`）** に移動しました。  
+- `solutions/` は `.gitignore` により **Push対象外** です。  
+- 課題は **`assignment3_number_game.py`** を編集して提出してください。
+
+---
+
+### ローカル実行・テスト
+
+```bash
+python assignment3_number_game.py
+pip install -r requirements.txt
+pytest -q autograde_tests
+```
+
+---
+
+### Classroom の自動採点（参考）
+
+**Setup command**
+```bash
+python -m pip install -r requirements.txt
+```
+
+**Test command**
+```bash
+pytest -q autograde_tests
+```
