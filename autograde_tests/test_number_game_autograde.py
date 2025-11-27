@@ -8,6 +8,10 @@
 # - Lose message includes the correct answer (e.g., "残念！正解は 50 でした。")
 # - Non-integer input should prompt re-entry and show a guidance message (expected substring: "整数を入力してください")
 
+import os
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+
 import importlib
 import builtins
 from types import SimpleNamespace
