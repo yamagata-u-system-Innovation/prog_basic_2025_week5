@@ -1,12 +1,3 @@
-# assignment3_number_game.py
-# 課題#3：数当てゲーム（テンプレート）
-# 仕様：
-# - 1〜100の乱数を生成して当てる
-# - 最大7回まで挑戦可
-# - ヒント：「もっと大きいです。」「もっと小さいです。」
-# - 勝敗メッセージ：正解！／残念！正解は X でした。
-# - 整数以外が入力されたら再入力を促す（例：「整数を入力してください」など）
-
 import random
 
 def main():
@@ -17,17 +8,25 @@ def main():
 
     while tries < max_tries:
         s = input("予想した数: ")
-        # TODO: ここで s を整数に変換し、失敗時はメッセージを出して再入力させる
 
-        # TODO: 入力値と answer を比較し、ヒント or 正解メッセージを表示
-        # guess < answer → 「もっと大きいです。」
-        # guess > answer → 「もっと小さいです。」
-        # guess == answer → 正解（回数も表示して終了）
+        try:
+            guess = int(s)
+        except ValueError:
+            print("整数を入力してください。")
+            continue
 
-        # TODO: 試行回数のカウント
+        tries += 1
 
-    # TODO: 7回以内に当てられなかった場合の敗北メッセージ
-    # 例：「残念！正解は X でした。」
+        if guess == answer:
+            print(f"正解！{tries}回で当たりました！")
+            return
+        elif guess < answer:
+            print("もっと大きいです。")
+        else:
+            print("もっと小さいです。")
+
+    print(f"残念！正解は {answer} でした。")
+
 
 if __name__ == "__main__":
     main()
